@@ -12,9 +12,10 @@ import static io.restassured.RestAssured.given;
 import static io.restassured.RestAssured.requestSpecification;
 
 public class DataGenerator {
-    private DataGenerator(){
+    private DataGenerator() {
 
     }
+
     private static final Faker FAKER = new Faker(new Locale("en"));
     private static final RequestSpecification requestSpec = new RequestSpecBuilder()
             .setBaseUri("http://localhost")
@@ -35,19 +36,24 @@ public class DataGenerator {
                 .statusCode(200);
     }
 
-    public static String getRandomLogin() {return FAKER.name().username();}
+    public static String getRandomLogin() {
+        return FAKER.name().username();
+    }
 
-    public static String getRandomPassword() {return FAKER.internet().password();}
+    public static String getRandomPassword() {
+        return FAKER.internet().password();
+    }
 
     public static class Registration {
-        private Registration(){
+        private Registration() {
 
         }
-        public static UserInfo getUser (String status){
+
+        public static UserInfo getUser(String status) {
             return new UserInfo(getRandomLogin(), getRandomPassword(), status);
         }
 
-        public static UserInfo getRegistredUser (String status){
+        public static UserInfo getRegistredUser(String status) {
             var user = getUser(status);
             setRequest(user);
             return user;

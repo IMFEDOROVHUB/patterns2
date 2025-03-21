@@ -13,19 +13,19 @@ public class AuthTest {
     }
 
 
-@Test
-public void successAuth() {
-    var registredUser = DataGenerator.Registration.getRegistredUser("active");
+    @Test
+    public void successAuth() {
+        var registredUser = DataGenerator.Registration.getRegistredUser("active");
 
-    $("[data-test-id='login'] input").setValue(registredUser.getLogin());
-    $("[data-test-id='password'] input").setValue(registredUser.getPassword());
-    $("[data-test-id='action-login']").click();
-    $("h2")
-            .shouldBe(Condition.visible)
-            .shouldHave(Condition.text("Личный кабинет"));
-}
+        $("[data-test-id='login'] input").setValue(registredUser.getLogin());
+        $("[data-test-id='password'] input").setValue(registredUser.getPassword());
+        $("[data-test-id='action-login']").click();
+        $("h2")
+                .shouldBe(Condition.visible)
+                .shouldHave(Condition.text("Личный кабинет"));
+    }
 
-@Test
+    @Test
     public void blockedUser() {
         var registredUser = DataGenerator.Registration.getRegistredUser("blocked");
 
@@ -33,8 +33,8 @@ public void successAuth() {
         $("[data-test-id='password'] input").setValue(registredUser.getPassword());
         $("[data-test-id='action-login']").click();
         $("[data-test-id='error-notification'] .notification__content")
-            .shouldBe(Condition.visible)
-            .shouldHave(Condition.text("Ошибка! Пользователь заблокирован"));
+                .shouldBe(Condition.visible)
+                .shouldHave(Condition.text("Ошибка! Пользователь заблокирован"));
     }
 
     @Test
